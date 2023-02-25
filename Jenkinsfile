@@ -7,15 +7,28 @@ pipeline{
             }
 
         }
-		stage("Build"){
+		stage("Clone"){
 		    steps{
-		        bat "mvn clean install"
+		    	bat "git clone https://github.com/Marknewcomb/Devops.git"
 		    }
 
 		}
+		stage("Build"){
+		    steps{
+		        dir("Devops"){
+		            bat "mvn clean install"
+		        }
+
+		    }
+
+		}
+
 		stage("Deploy"){
 		    steps{
-		        bat "java -cp target/Devops-0.0.1-SNAPSHOT-jar-with-dependencies.jar com.newcomb.java.Main"
+		        dir("Devops"){
+		            bat "java -cp target/Devops-0.0.1-SNAPSHOT-jar-with-dependencies.jar com.newcomb.java.Main"
+		        }
+
 		    }
 
 		}
