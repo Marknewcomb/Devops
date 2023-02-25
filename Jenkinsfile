@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+agent any
     stages{
         stage("Clean"){
             steps{
@@ -30,6 +30,15 @@ pipeline{
 		            bat "docker login -u mnewcomb21 -p 196711aaAA!!"
 		            bat "docker tag devops mnewcomb21/devops"
 		            bat "docker push mnewcomb21/devops"
+		        }
+
+		    }
+
+		}
+		stage("Run"){
+		    steps{
+		        dir("Devops"){
+		            bat "docker run mnewcomb21/devops"
 		        }
 
 		    }
