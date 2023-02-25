@@ -26,11 +26,10 @@ pipeline{
 		stage("Deploy"){
 		    steps{
 		        dir("Devops"){
-		            //bat "java -cp target/Devops-0.0.1-SNAPSHOT-jar-with-dependencies.jar com.newcomb.java.Main"
-		            bat "docker build -t devops1 ."
+		            bat "docker build -t devops ."
 		            bat "docker login -u mnewcomb21 -p 196711aaAA!!"
-		            bat "docker tag devops1 mnewcomb21/devops1"
-		            bat "docker push mnewcomb21/devops1"
+		            bat "docker tag devops mnewcomb21/devops"
+		            bat "docker push mnewcomb21/devops"
 		        }
 
 		    }
@@ -39,7 +38,7 @@ pipeline{
 		stage("Run"){
 		    steps{
 		        dir("Devops"){
-		            bat "docker run mnewcomb21/devops1"
+		            bat "docker run mnewcomb21/devops"
 		        }
 
 		    }
