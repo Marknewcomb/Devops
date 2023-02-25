@@ -35,15 +35,6 @@ pipeline{
 		    }
 
 		}
-		stage("Run"){
-		    steps{
-		        dir("Devops"){
-		            bat "docker run mnewcomb21/devops"
-		        }
-
-		    }
-
-		}
 
     }
 
